@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla Base - PACO AXIS Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+/* ==========================================================================
+   THEMES (LIGHT & DARK MACROS)
+   ========================================================================== */
+:root, [data-theme='light'] {
+    --white: #ffffff;
+    --black: #000000;
+    --paco-oro: #d19213;
+    --paco-oro-hover: #b87b0d;
+    --paco-oro-light: rgba(209, 146, 19, 0.1);
+    --paco-oro-dim: rgba(209, 146, 19, 0.28);
+    --paco-gris: #717173;
+    --paco-monitoreo: #8c8c8d;
+    --blue: #3872ff;
+    --blue-dark: #2563eb;
+    --blue-soft: rgba(56, 114, 255, 0.1);
+    --blue-soft-strong: rgba(56, 114, 255, 0.15);
+    --blue-soft-hover: rgba(56, 114, 255, 0.2);
+    --blue-focus-ring: rgba(56, 114, 255, 0.1);
+    --blue-focus-ring-strong: rgba(56, 114, 255, 0.2);
+    --blue-badge-text: #4381fb;
+    --warning: #f59e0b;
+    --warning-soft: rgba(245, 158, 11, 0.15);
+    --success: #27ae60;
+    --success-hover: #219150;
+    --success-soft: rgba(46, 204, 113, 0.15);
+    --success-soft-alt: rgba(16, 185, 129, 0.1);
+    --success-pulse: rgba(16, 185, 129, 0.7);
+    --success-pulse-fade: rgba(16, 185, 129, 0);
+    --success-shadow: rgba(46, 204, 113, 0.3);
+    --status-online: #00ff88;
+    --status-online-glow: rgba(0, 255, 136, 0.4);
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --danger-soft: rgba(239, 68, 68, 0.15);
+    --danger-soft-alt: rgba(239, 68, 68, 0.08);
+    --danger-soft-border: rgba(239, 68, 68, 0.2);
+    --danger-shadow: rgba(239, 68, 68, 0.35);
+    --danger-shadow-soft: rgba(239, 68, 68, 0.2);
+    --status-offline: #ff4d4d;
+    --status-offline-glow: rgba(255, 77, 77, 0.4);
+    --neutral-soft: rgba(128, 128, 128, 0.1);
+    --surface-overlay-subtle: rgba(255, 255, 255, 0.03);
+    --surface-overlay-soft: rgba(255, 255, 255, 0.7);
+    --surface-overlay-border: rgba(255, 255, 255, 0.3);
+    --overlay-strong: rgba(0, 0, 0, 0.85);
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    --bg-viewport: #e0e3e6;
+    --bg-view_flechas: #c3c8ce;
+    --bg-card: #ffffff;
+    --bg-input: #ffffff;
+    --header-bg: #ffffff;
+    --toolbar-bg: #2c3e50;
+    --logo-line: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --text-inv: #ffffff;
+    --text-subtle: #999999;
+    --border: #dfe6e9;
+    --border_movil: #333333;
+    --border-soft: #eeeeee;
+    --toolbar-divider: rgba(255, 255, 255, 0.05);
+    --toolbar-hover: rgba(255, 255, 255, 0.05);
+    --logout-hover: #fff5f5;
+    --profile-hover: #f8f9fa;
+    --table-header-bg: #f8f9fa;
+    --tabla-header-bg: #f8f9fa;
+    --tabla-header-text: #272727;
+    --row-version-bg: #d8d6d6;
+    --tabla-productos_vtext: #3a3a3a;
+    --skeleton-bg: #e0e0e0;
+    --text-btn-cancelar: #000000;
+    --text-btn-confirmar: #ffffff;
+    --text-btn-volver: #000000;
+    --btn-cancelar-bg: #ffffff;
+    --btn-confirmar-bg: #e3a322;
+    --btn-volver-bg: #ffffff;
+    --text-swt-mode: #000000;
+    --swt-mode-bg: #e3a322;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.08);
+    --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-fab: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --shadow-fab-hover: 0 15px 30px rgba(0, 0, 0, 0.3);
+    --shadow-menu: 0 15px 40px rgba(0, 0, 0, 0.4);
+    --shadow-modal: 0 25px 50px rgba(0, 0, 0, 0.5);
+    --shadow-modal-soft: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --shadow-brand: 0 4px 15px rgba(56, 114, 255, 0.4);
+    --shadow-notify: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-gold: 0 4px 12px rgba(212, 175, 55, 0.3);
+    --shadow-focus-blue: 0 0 0 4px rgba(56, 114, 255, 0.1);
+    --shadow-focus-gold: 0 0 0 4px rgba(221, 190, 100, 0.15);
+    --shadow-status-dot: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] {
+    --white: #ffffff;
+    --black: #000000;
+    --paco-oro: #e3a322;
+    --paco-oro-hover: #d19213;
+    --paco-oro-light: rgba(227, 163, 34, 0.14);
+    --paco-oro-dim: rgba(227, 163, 34, 0.32);
+    --paco-gris: #d8d8d8;
+    --paco-monitoreo: #5a5a5b;
+    --blue: #5f8dff;
+    --blue-dark: #7aa2ff;
+    --blue-soft: rgba(95, 141, 255, 0.14);
+    --blue-soft-strong: rgba(95, 141, 255, 0.22);
+    --blue-soft-hover: rgba(95, 141, 255, 0.28);
+    --blue-focus-ring: rgba(95, 141, 255, 0.18);
+    --blue-focus-ring-strong: rgba(95, 141, 255, 0.28);
+    --blue-badge-text: #8fb0ff;
+    --warning: #f4b74a;
+    --warning-soft: rgba(244, 183, 74, 0.2);
+    --success: #2ecc71;
+    --success-hover: #27ae60;
+    --success-soft: rgba(46, 204, 113, 0.2);
+    --success-soft-alt: rgba(46, 204, 113, 0.16);
+    --success-pulse: rgba(46, 204, 113, 0.7);
+    --success-pulse-fade: rgba(46, 204, 113, 0);
+    --success-shadow: rgba(46, 204, 113, 0.32);
+    --status-online: #39f0a2;
+    --status-online-glow: rgba(57, 240, 162, 0.45);
+    --danger: #ff5f5f;
+    --danger-hover: #ef4444;
+    --danger-soft: rgba(255, 95, 95, 0.2);
+    --danger-soft-alt: rgba(255, 95, 95, 0.12);
+    --danger-soft-border: rgba(255, 95, 95, 0.28);
+    --danger-shadow: rgba(255, 95, 95, 0.38);
+    --danger-shadow-soft: rgba(255, 95, 95, 0.24);
+    --status-offline: #ff7070;
+    --status-offline-glow: rgba(255, 112, 112, 0.45);
+    --neutral-soft: rgba(255, 255, 255, 0.08);
+    --surface-overlay-subtle: rgba(255, 255, 255, 0.03);
+    --surface-overlay-soft: rgba(44, 44, 44, 0.7);
+    --surface-overlay-border: rgba(255, 255, 255, 0.1);
+    --overlay-strong: rgba(0, 0, 0, 0.85);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+    --bg-viewport: #2e2e2e;
+    --bg-view_flechas: #4b4b4b;
+    --bg-card: #2c2c2c;
+    --bg-input: #252525;
+    --header-bg: #202020;
+    --toolbar-bg: #5c5c5c;
+    --logo-line: #ffffff;
+    --text-main: #e0e0e0;
+    --text-muted: #888888;
+    --text-inv: #202020;
+    --text-subtle: #adadad;
+    --border: #333333;
+    --border_movil: #333333;
+    --border-soft: #2a2a2a;
+    --toolbar-divider: rgba(255, 255, 255, 0.05);
+    --toolbar-hover: rgba(255, 255, 255, 0.05);
+    --logout-hover: #2a1a1a;
+    --profile-hover: #252525;
+    --table-header-bg: #2a2a2a;
+    --tabla-header-bg: #494949;
+    --tabla-header-text: #ffffff;
+    --row-version-bg: #424242;
+    --tabla-productos_vtext: #adadad;
+    --skeleton-bg: #222222;
+    --text-btn-cancelar: #ffffff;
+    --text-btn-confirmar: #000000;
+    --text-btn-volver: #ffffff;
+    --btn-cancelar-bg: #585858;
+    --btn-confirmar-bg: #e3a322;
+    --btn-volver-bg: #333333;
+    --text-swt-mode: #ffffff;
+    --swt-mode-bg: #585858;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.35);
+    --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-fab: 0 10px 25px rgba(0, 0, 0, 0.35);
+    --shadow-fab-hover: 0 15px 30px rgba(0, 0, 0, 0.45);
+    --shadow-menu: 0 15px 40px rgba(0, 0, 0, 0.55);
+    --shadow-modal: 0 25px 50px rgba(0, 0, 0, 0.6);
+    --shadow-modal-soft: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    --shadow-brand: 0 4px 15px rgba(95, 141, 255, 0.38);
+    --shadow-notify: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --shadow-gold: 0 4px 12px rgba(227, 163, 34, 0.35);
+    --shadow-focus-blue: 0 0 0 4px rgba(95, 141, 255, 0.18);
+    --shadow-focus-gold: 0 0 0 4px rgba(227, 163, 34, 0.18);
+    --shadow-status-dot: 0 0 5px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   GLOBAL RESET 
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body {
+    background: var(--bg-viewport);
+    color: var(--text-main);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    --sidebar-width: 240px;
+}
+
+button { outline: none; }
+input { outline: none; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD LAYOUT & UTILS
+   ========================================================================== */
+.dashboard-root {
+    background-color: var(--bg-viewport);
+    color: var(--text-main);
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+    flex-shrink: 0;
+    background: var(--toolbar-bg);
+    color: var(--text-inv);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-brand {
+    padding: 32px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo-iso {
+    width: 100%;
+    max-width: 190px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.nav-section {
+    padding: 0px 12px;
+    flex-grow: 1;
+}
+
+.nav-label {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding-left: 42px;
+    margin: 10px 0 8px;
+    opacity: 0.6;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background: var(--toolbar-hover);
+    color: var(--text-inv);
+}
+
+.nav-link.active {
+    background: var(--paco-oro);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.nav-link svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+.main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header-pro {
+    height: 65px;
+    min-height: 65px;
+    background: linear-gradient(to right, var(--header-bg), var(--bg-card));
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.header-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-soft);
+    margin: 0 20px;
+}
+
+.brand-entity {
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.brand-symbol {
+    width: 44px;
+    height: 44px;
+    background: var(--blue-soft);
+    border: 1px solid var(--blue-soft-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    filter: drop-shadow(0 0 8px var(--blue-focus-ring-strong));
+    margin-right: 15px;
+    transition: all 0.3s;
+}
+
+.brand-symbol:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px var(--blue));
+}
+
+.brand-symbol svg {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 0 5px var(--blue-focus-ring));
+}
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-main {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.brand-sub {
+    font-size: 0.65rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+}
+
+/* User Dropdown inside Header */
+.user-nav {
+    position: relative;
+}
+
+.user-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.user-btn:hover {
+    background: var(--profile-hover);
+}
+
+.avatar-box {
+    width: 32px;
+    height: 32px;
+    background: var(--paco-oro-light);
+    color: var(--paco-oro);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.user-display-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.user-display-role {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--paco-oro);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dropdown-pro {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 240px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
+    display: none; /* JS toggles class 'show' */
+    padding: 8px;
+    z-index: 100;
+    animation: dropdownFade 0.2s ease-out;
+}
+
+.dropdown-pro.show {
+    display: block;
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-dropdown-header {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 8px 0;
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.2s;
+}
+
+.dropdown-item:hover {
+    background: var(--profile-hover);
+}
+
+.dropdown-item.logout-btn {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.dropdown-item.logout-btn:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.view-content {
+    padding: 5px 20px 10px 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+    animation: fadeIn 0.3s ease;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    min-height: 60px;
+    flex-shrink: 0;
+}
+
+.page-title h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.page-title p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 5px 0 0 0;
+}
+
+/* Buttons */
+.btn-paco {
+    background: var(--paco-oro);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-paco:hover { background: var(--paco-oro-hover); }
+
+/* Tables and Cards */
+.data-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.toolbar {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    background: var(--header-bg);
+}
+
+.search-box {
+    flex-grow: 1;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.paco-select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.2s;
+    cursor: pointer;
+    height: 38px;
+}
+
+.paco-select:focus {
+    border-color: var(--paco-oro);
+    box-shadow: 0 0 0 3px var(--paco-oro-light);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 12px 20px;
+    font-size: 0.75rem;
+    color: var(--tabla-header-text);
+    background: var(--tabla-header-bg);
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 0.85rem;
+}
+
+tr:hover {
+    background: var(--row-version-bg);
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.bg-success { background: var(--success-soft); color: var(--success); }
+.bg-warning { background: var(--warning-soft); color: var(--warning); }
+.bg-danger { background: var(--danger-soft); color: var(--danger); }
+.bg-blue { background: var(--blue-soft-strong); color: var(--blue-badge-text); }
+
+
+/* Floating Settings Menu */
+.floating-settings {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+.fab-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-fab);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fab-btn:hover {
+    transform: scale(1.1) rotate(45deg);
+    border-color: var(--paco-oro);
+    color: var(--paco-oro);
+    box-shadow: var(--shadow-fab-hover);
+}
+
+.fab-btn svg { transition: transform 0.5s ease; }
+.fab-btn:hover svg { transform: rotate(90deg); }
+
+.settings-menu {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: 260px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-menu);
+    padding: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    pointer-events: none;
+}
+
+.settings-menu::after {
+    content: "";
+    position: absolute;
+    top: 100%; left: 0; width: 100%; height: 15px; background: transparent;
+}
+
+.settings-menu.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+.menu-header {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 10px 8px;
+    letter-spacing: 1.5px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: var(--text-main);
+}
+
+.menu-item:hover { background: var(--bg-viewport); }
+.menu-item span { font-weight: 600; font-size: 0.9rem; }
+.menu-divider { height: 1px; background: var(--border-soft); margin: 8px 10px; }
+
+/* Switch minimalista global configs */
+.switch-minimal {
+    position: relative;display: inline-block;width: 36px;height: 18px;
+}
+.switch-minimal input { opacity: 0; width: 0; height: 0; position: absolute; }
+.slider-minimal {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--border); transition: .4s; border-radius: 34px;
+}
+.slider-minimal:before {
+    position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px;
+    background-color: var(--white); transition: .4s; border-radius: 50%;
+}
+input:checked + .slider-minimal { background-color: var(--blue); }
+input:checked + .slider-minimal:before { transform: translateX(18px); }
+
+/* Infra headers inside config */
+.menu-section {
+    padding: 10px 0;
+}
+.section-title {
+    display: block; font-size: 0.65rem; font-weight: 800; color: var(--text-muted);
+    text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; padding: 0 10px;
+}
+
+/* Lang buttons */
+.lang-selector-group {
+    display: flex; gap: 8px; padding: 0 10px;
+}
+.lang-selector-group button {
+    flex: 1; background: var(--header-bg); border: 1px solid var(--border); padding: 10px 0;
+    border-radius: 8px; color: var(--text-muted); font-weight: 800; font-size: 0.8rem;
+    cursor: pointer; transition: 0.2s;
+}
+.lang-selector-group button:hover { border-color: var(--paco-oro); color: var(--paco-oro); }
+.lang-selector-group button.active {
+    background: var(--paco-oro); color: var(--white); border-color: var(--paco-oro);
+    box-shadow: var(--shadow-gold);
+}
+
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- FLOATING SETTINGS OVERLAY COMPONENT -->
+    <div class="floating-settings">
+        <button class="fab-btn" onclick="toggleConfigMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+        </button>
+
+        <div class="settings-menu" id="configMenu">
+            <div class="menu-header">Configuraciones</div>
+
+            <div class="menu-item" onclick="toggleTheme()">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--warning);">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <span id="themeLabel">Modo Día</span>
+                </div>
+                <label class="switch-minimal" style="pointer-events: none;">
+                    <input type="checkbox" id="themeSwitch">
+                    <span class="slider-minimal"></span>
+                </label>
+            </div>
+
+            <div class="menu-divider"></div>
+            <div class="menu-section">
+                <span class="section-title">Región e Idioma</span>
+                <div class="lang-selector-group">
+                    <button class="active">ES</button>
+                    <button>EN</button>
+                    <button>DE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="dashboard-root" onclick="closeAllDropdowns(event)">
+        
+        <!-- SIDEBAR COMPONENT -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="#" alt="Logotipo Aquí" class="logo-iso" style="display:none;">
+                <h2 style="color:white; font-size: 1.5rem;">LOGO IMG</h2>
+            </div>
+    
+            <nav class="nav-section">
+                <div class="nav-label">Monitoreo</div>
+                <div class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Dashboard Global
+                </div>
+    
+                <div class="nav-label">Administración</div>
+                <div class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    Aplicaciones
+                </div>
+    
+                <div class="nav-link active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Usuarios
+                </div>
+            </nav>
+        </aside>
+    
+        <!-- MAIN WRAPPER COMPONENT -->
+        <div class="main-wrapper">
+            <!-- HEADER PRO COMPONENT -->
+            <header class="header-pro">
+                <div class="brand-entity">
+                    <div class="brand-symbol">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="var(--blue)" fill-opacity="0.15"></path>
+                            <path d="M9 12L11 14L15 10"></path>
+                        </svg>
+                    </div>
+                    <div class="brand-info">
+                        <span class="brand-main">PACO AXIS</span>
+                        <span class="brand-sub">Identity & Access Management</span>
+                    </div>
+                    <div class="header-divider"></div>
+                    <div class="status-indicator">
+                        <span class="badge bg-blue" style="font-size: 0.65rem; letter-spacing: 1px;">SISTEMA OPERATIVO</span>
+                    </div>
+                </div>
+    
+                <div class="user-nav">
+                    <div class="user-btn" onclick="toggleUserDropdown(event)">
+                        <div class="avatar-box">AD</div>
+                        <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
+                            <span class="user-display-name">Administrador</span>
+                            <span class="user-display-role">admin</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 5px; opacity: 0.6;">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+    
+                    <div class="dropdown-pro" id="userDropdown">
+                        <div class="user-dropdown-header">
+                            <span class="user-display-name">Administrador Principal</span>
+                            <span class="user-display-role">admin@axis.local</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">Mi Perfil Profesional</div>
+                        <div class="dropdown-item">Ajustes de Seguridad</div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item logout-btn">Cerrar Sesión</div>
+                    </div>
+                </div>
+            </header>
+    
+            <!-- PAGE CONTENT COMPONENT (EXAMPLE) -->
+            <main style="flex-grow: 1; overflow-y: auto; padding: 32px;">
+                <div class="view-content active">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2>Directorio de Usuarios</h2>
+                            <p>Gestión centralizada de identidades y accesos a la plantilla</p>
+                        </div>
+                        <button class="btn-paco">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line>
+                            </svg>
+                            REGISTRAR USUARIO
+                        </button>
+                    </div>
+            
+                    <div class="data-card">
+                        <div class="toolbar" style="gap: 15px; align-items: center;">
+                            <div style="flex-grow: 1; position: relative;">
+                                <input type="text" class="search-box" style="width: 100%; padding-left: 38px;" placeholder="Buscar por usuario, correo o número de cédula...">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); opacity: 0.6;">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-shrink: 0;">
+                                <select class="paco-select" style="min-width: 140px;">
+                                    <option value="">Cualquier Área</option>
+                                    <option value="TI">TI / Operaciones</option>
+                                </select>
+                                <select class="paco-select" style="min-width: 140px;">
+                                    <option value="">Todos los Estados</option>
+                                    <option value="ACTIVO">Activos</option>
+                                    <option value="INACTIVO">Inactivos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;"></th>
+                                    <th>Estado</th>
+                                    <th>Identidad del Usuario</th>
+                                    <th>Cédula</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="width: 24px; height: 24px; border-radius: 4px; background: var(--neutral-soft); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: var(--text-muted);">A</div>
+                                    </td>
+                                    <td><span class="badge bg-success">ACTIVO</span></td>
+                                    <td>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-weight: 700; color: var(--text-main);">Administrador Sistema</span>
+                                            <span style="font-size: 0.75rem; color: var(--blue);">@admin</span>
+                                        </div>
+                                    </td>
+                                    <td>1711111111</td>
+                                    <td>admin@ejemplo.com</td>
+                                    <td><button class="btn-paco" style="background: var(--blue-soft); color: var(--blue); padding: 6px 12px; font-size: 0.75rem;">GESTIONAR</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toggling Script -->
+    <script>
+        let isDark = false;
+        
+        function toggleConfigMenu() {
+            event.stopPropagation();
+            const configMenu = document.getElementById('configMenu');
+            configMenu.classList.toggle('show');
+            
+            // Cerrar el otro si esta abierto
+            document.getElementById('userDropdown').classList.remove('show');
+        }
+
+        function toggleUserDropdown(e) {
+            e.stopPropagation();
+            const userDropdown = document.getElementById('userDropdown');
+            userDropdown.classList.toggle('show');
+            
+            // Cerrar el otro si esta abierto
+            document.getElementById('configMenu').classList.remove('show');
+        }
+
+        function closeAllDropdowns(e) {
+            document.getElementById('userDropdown').classList.remove('show');
+            if(!e.target.closest('.floating-settings')){
+                document.getElementById('configMenu').classList.remove('show');
+            }
+        }
+
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            document.getElementById('themeSwitch').checked = isDark;
+            
+            const themeLabel = document.getElementById('themeLabel');
+            themeLabel.innerText = isDark ? 'Modo Noche' : 'Modo Día';
+
+            const svg = document.getElementById('themeIcon');
+            if(isDark) {
+                svg.style.color = 'var(--blue)';
+                svg.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+            } else {
+                svg.style.color = 'var(--warning)';
+                svg.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<div class="view-content active" style="padding: 32px;">
+    <div class="page-header">
+        <div class="page-title">
+            <h2>Directorio de Usuarios</h2>
+            <p>Gestión centralizada de identidades y accesos a la plantilla</p>
+        </div>
+        <button class="btn-paco-orange">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            REGISTRAR USUARIO
+        </button>
+    </div>
+
+    <div class="data-card">
+        <div class="toolbar" style="gap: 15px; align-items: center;">
+            <div style="flex-grow: 1; position: relative;">
+                <input type="text" class="search-box" style="width: 100%; padding-left: 38px;"
+                    placeholder="Buscar por usuario, correo o número de cédula...">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); opacity: 0.6;">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <div style="display: flex; gap: 8px; flex-shrink: 0;">
+                <select class="paco-select" style="min-width: 140px;">
+                    <option value="">Cualquier Área</option>
+                    <option value="TI">TI / Operaciones</option>
+                </select>
+                <select class="paco-select" style="min-width: 140px;">
+                    <option value="">Todos los Estados</option>
+                    <option value="ACTIVO">Activos</option>
+                    <option value="INACTIVO">Inactivos</option>
+                </select>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40px;"></th>
+                    <th>Estado</th>
+                    <th>Identidad del Usuario</th>
+                    <th>Cédula</th>
+                    <th>Correo Electrónico</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>
+                        <div
+                            style="width: 24px; height: 24px; border-radius: 4px; background: var(--neutral-soft); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: var(--text-muted);">
+                            {{ user.avatar }}</div>
+                    </td>
+                    <td><span class="badge" [ngClass]="user.status === 'ACTIVO' ? 'bg-success' : 'bg-danger'">{{
+                            user.status }}</span></td>
+                    <td>
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="font-weight: 700; color: var(--text-main);">{{ user.name }}</span>
+                            <span style="font-size: 0.75rem; color: var(--blue);">@{{ user.username }}</span>
+                        </div>
+                    </td>
+                    <td>{{ user.dni }}</td>
+                    <td>{{ user.email }}</td>
+                    <td><button class="btn-paco"
+                            style="background: var(--blue-soft); color: var(--blue); padding: 6px 12px; font-size: 0.75rem;">GESTIONAR</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
