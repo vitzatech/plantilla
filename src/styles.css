@@ -393,9 +393,12 @@ input {
 }
 
 @media (max-width: 800px) {
-    .user-details-box, .user-caret {
+
+    .user-details-box,
+    .user-caret {
         display: none !important;
     }
+
     .user-btn {
         padding: 4px;
         background: var(--neutral-soft);
@@ -513,7 +516,7 @@ input {
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -529,15 +532,24 @@ input {
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
 }
 
-.btn-paco:hover {
+.btn-paco-orange:hover, .btn-paco-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-paco-orange:hover {
     background: var(--paco-oro-hover);
+}
+
+.btn-paco-orange:active, .btn-paco-white:active {
+    transform: translateY(-1px) scale(0.98);
 }
 
 /* Tables and Cards */
@@ -547,12 +559,13 @@ input {
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .data-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--paco-oro-dim);
 }
 
 .card-header {
@@ -589,6 +602,14 @@ input {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--paco-oro-dim);
 }
 
 .stat-value {
@@ -814,4 +835,40 @@ input:checked+.slider-minimal:before {
     color: var(--white);
     border-color: var(--paco-oro);
     box-shadow: var(--shadow-gold);
+}
+
+/* ==========================================================================
+   PREMIUM SCROLLBAR
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--paco-oro);
+}
+
+/* Specific for components with dark backgrounds like Sidebar */
+.nav-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-section::-webkit-scrollbar-thumb:hover {
+    background: var(--paco-oro);
+}
+
+/* Firefox support */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(128, 128, 128, 0.2) transparent;
 }
