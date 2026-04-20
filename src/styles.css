@@ -248,8 +248,27 @@ input {
     gap: 0;
 }
 
+.nav-text,
+.toggle-text {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.2s ease, max-width 0.3s ease;
+    max-width: 200px;
+    opacity: 1;
+    display: inline-block;
+}
+
+.sidebar:not(.collapsed) .nav-text,
+.sidebar:not(.collapsed) .toggle-text {
+    transition-delay: 0.15s;
+}
+
+.collapsed .nav-text,
 .collapsed .toggle-text {
-    display: none;
+    max-width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease, max-width 0.2s ease;
 }
 
 .main-wrapper {
